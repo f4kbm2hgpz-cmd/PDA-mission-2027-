@@ -206,6 +206,7 @@
     © 2026 #Kaamboltahai
   </div>
 
+
   <script>
     const songs = [
       "mp3/song1.mp3",
@@ -222,7 +223,7 @@
     const audioPlayer = document.getElementById("audioPlayer");
     const nowPlaying = document.getElementById("nowPlaying");
 
-    songs.forEach((file) => {
+    songs.forEach((file, index) => {
 
       const button = document.createElement("button");
 
@@ -247,6 +248,7 @@
           "▶️ " + file
             .replace("mp3/", "")
             .replace(".mp3", "");
+
       });
 
       songList.appendChild(button);
