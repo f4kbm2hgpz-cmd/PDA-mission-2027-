@@ -189,7 +189,7 @@
   <div class="player-card">
 
     <div class="player-title">
-      🎵 MUSIC
+      #Kaamboltahai
     </div>
 
     <div class="song-list" id="songList"></div>
@@ -206,17 +206,7 @@
     © 2026 #Kaamboltahai
   </div>
 
-
   <script>
-    /*
-      IMPORTANT:
-      Neeche apne MP3 folder ke exact file names daalna.
-      
-      Example:
-      "mp3/song1.mp3"
-      "mp3/song2.mp3"
-    */
-
     const songs = [
       "mp3/song1.mp3",
       "mp3/song2.mp3",
@@ -232,7 +222,7 @@
     const audioPlayer = document.getElementById("audioPlayer");
     const nowPlaying = document.getElementById("nowPlaying");
 
-    songs.forEach((file, index) => {
+    songs.forEach((file) => {
 
       const button = document.createElement("button");
 
@@ -257,7 +247,6 @@
           "▶️ " + file
             .replace("mp3/", "")
             .replace(".mp3", "");
-
       });
 
       songList.appendChild(button);
