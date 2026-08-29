@@ -15,7 +15,7 @@
 body{
   min-height:100vh;
   font-family:Arial,sans-serif;
-  color:#fff;
+  color:white;
   background:#070707;
 }
 
@@ -252,7 +252,6 @@ footer small{
   <div class="mission">MISSION 2027</div>
 </header>
 
-
 <section class="hero">
 
   <div class="hero-content">
@@ -279,7 +278,6 @@ footer small{
   </div>
 
 </section>
-
 
 <section class="music">
 
@@ -322,20 +320,12 @@ footer small{
 
 </section>
 
-
 <footer>
   PDA • Mission 2027
   <small>Created by Pranjul Yadav</small>
 </footer>
 
-
 <script>
-
-/* =========================
-   8 MP3 FILES
-   ये files repository की
-   MAIN जगह पर हैं।
-========================= */
 
 const songs = [
 
@@ -381,6 +371,8 @@ const songs = [
 
 ];
 
+const RAW_BASE =
+"https://raw.githubusercontent.com/f4kbm2hgpz-cmd/PDA-mission-2027-/refs/heads/main/";
 
 let currentSong = 0;
 
@@ -390,9 +382,6 @@ const number = document.getElementById("songNumber");
 const counter = document.getElementById("counter");
 const playBtn = document.getElementById("playBtn");
 const error = document.getElementById("error");
-const nextBtn = document.getElementById("nextBtn");
-const prevBtn = document.getElementById("prevBtn");
-
 
 function loadSong(index){
 
@@ -400,20 +389,21 @@ function loadSong(index){
 
   title.textContent = songs[index].name;
 
-  number.textContent = "Song " + (index + 1);
+  number.textContent =
+    "Song " + (index + 1);
 
   counter.textContent =
     (index + 1) + " / " + songs.length;
 
   /*
-    IMPORTANT:
-    GitHub में filename में %20 है।
-    इसलिए % को दोबारा encode करना जरूरी है।
-  */
+   * IMPORTANT:
+   * GitHub filename में %20 पहले से मौजूद है।
+   * encodeURIComponent() % को %25 में बदलता है,
+   * जिससे Raw URL सही file तक पहुँचता है।
+   */
 
-  audio.src = encodeURI(
-    songs[index].file
-  ).replaceAll("%20", "%2520");
+  audio.src =
+    RAW_BASE + encodeURIComponent(songs[index].file);
 
   audio.load();
 
@@ -421,7 +411,6 @@ function loadSong(index){
 
   playBtn.textContent = "▶";
 }
-
 
 function playSong(){
 
@@ -438,7 +427,6 @@ function playSong(){
     });
 }
 
-
 function togglePlay(){
 
   if(audio.paused){
@@ -452,111 +440,70 @@ function togglePlay(){
     playBtn.textContent = "▶";
 
   }
-
 }
-
 
 function nextSong(){
 
   currentSong++;
 
   if(currentSong >= songs.length){
-
     currentSong = 0;
-
   }
 
   loadSong(currentSong);
-
   playSong();
-
 }
-
 
 function previousSong(){
 
   currentSong--;
 
   if(currentSong < 0){
-
     currentSong = songs.length - 1;
-
   }
 
   loadSong(currentSong);
-
   playSong();
-
 }
 
+document
+.getElementById("playBtn")
+.addEventListener("click", togglePlay);
 
-playBtn.addEventListener(
-  "click",
-  togglePlay
-);
+document
+.getElementById("nextBtn")
+.addEventListener("click", nextSong);
 
-nextBtn.addEventListener(
-  "click",
-  nextSong
-);
+document
+.getElementById("prevBtn")
+.addEventListener("click", previousSong);
 
-prevBtn.addEventListener(
-  "click",
-  previousSong
-);
+audio.addEventListener("ended", nextSong);
 
+audio.addEventListener("play", function(){
+  playBtn.textContent = "❚❚";
+});
 
-audio.addEventListener(
-  "ended",
-  nextSong
-);
+audio.addEventListener("pause", function(){
+  playBtn.textContent = "▶";
+});
 
-
-audio.addEventListener(
-  "play",
-  function(){
-    playBtn.textContent = "❚❚";
-  }
-);
-
-
-audio.addEventListener(
-  "pause",
-  function(){
-    playBtn.textContent = "▶";
-  }
-);
-
-
-audio.addEventListener(
-  "error",
-  function(){
-    error.style.display = "block";
-  }
-);
-
-
-/* FIRST SONG */
+audio.addEventListener("error", function(){
+  error.style.display = "block";
+});
 
 loadSong(0);
 
 
-/* INFORMATION TEXT */
+/* Information text */
 
 const works = [
-
   "1090 महिला शक्ति लाइन — महिलाओं की सुरक्षा से जुड़ी हेल्पलाइन",
-
   "लखनऊ मेट्रो — शहरी परिवहन परियोजना",
-
   "आगरा-लखनऊ एक्सप्रेसवे — 302 किलोमीटर का एक्सप्रेसवे",
-
   "किसान बाज़ार — किसानों से जुड़ी बाजार व्यवस्था",
-
   "लोहिया आवास योजना — ग्रामीण आवास से जुड़ी योजना",
-
   "108 आपातकालीन एम्बुलेंस सेवा — स्वास्थ्य सेवा"
-
 ];
 
 let currentWork = 0;
