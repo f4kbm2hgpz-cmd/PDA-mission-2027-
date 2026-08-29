@@ -1,39 +1,386 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>PDA Mission 2027</title>
+
+<style>
+*{
+  box-sizing:border-box;
+  margin:0;
+  padding:0;
+}
+
+body{
+  min-height:100vh;
+  font-family:Arial,sans-serif;
+  color:#fff;
+  background:#070707;
+}
+
+.topbar{
+  height:70px;
+  padding:0 6%;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  background:#0b0b0b;
+  border-bottom:1px solid #252525;
+}
+
+.brand{
+  font-size:23px;
+  font-weight:900;
+}
+
+.mission{
+  font-size:12px;
+  letter-spacing:2px;
+  color:#aaa;
+}
+
+.hero{
+  min-height:420px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  text-align:center;
+  padding:60px 20px;
+
+  background:
+    radial-gradient(circle at 10% 20%,rgba(255,0,0,.25),transparent 35%),
+    radial-gradient(circle at 90% 80%,rgba(0,255,100,.16),transparent 35%),
+    #070707;
+}
+
+.hero-content{
+  width:100%;
+  max-width:850px;
+}
+
+.label{
+  display:inline-block;
+  padding:9px 18px;
+  border:1px solid #303030;
+  border-radius:50px;
+  background:#151515;
+  color:#aaa;
+  font-size:12px;
+  letter-spacing:2px;
+  margin-bottom:25px;
+}
+
+h1{
+  font-size:clamp(42px,8vw,80px);
+  line-height:1.05;
+  font-weight:900;
+}
+
+h1 span{
+  display:block;
+  margin-top:10px;
+}
+
+.subtitle{
+  margin-top:20px;
+  color:#999;
+  font-size:17px;
+}
+
+.cycle{
+  font-size:58px;
+  margin:25px 0;
+}
+
+.info-box{
+  display:inline-block;
+  max-width:650px;
+  padding:15px 20px;
+  border:1px solid #292929;
+  border-radius:15px;
+  background:#111;
+  color:#ddd;
+}
+
+.music{
+  width:min(650px,92%);
+  margin:45px auto 90px;
+}
+
+.music-heading{
+  text-align:center;
+  margin-bottom:25px;
+}
+
+.music-heading h2{
+  font-size:30px;
+}
+
+.music-heading p{
+  color:#777;
+  margin-top:8px;
+}
+
+.player{
+  padding:22px;
+  border:1px solid #292929;
+  border-radius:25px;
+  background:linear-gradient(145deg,#1a1a1a,#090909);
+  box-shadow:0 25px 70px rgba(0,0,0,.55);
+}
+
+.cover{
+  height:110px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  border-radius:20px;
+  border:1px solid #333;
+  background:linear-gradient(135deg,#292929,#090909);
+  font-size:48px;
+  margin-bottom:20px;
+}
+
+.song-title{
+  text-align:center;
+  font-size:19px;
+  font-weight:bold;
+  line-height:1.4;
+}
+
+.song-number{
+  text-align:center;
+  margin-top:7px;
+  color:#777;
+  font-size:13px;
+}
+
+audio{
+  display:block;
+  width:100%;
+  margin:20px 0;
+}
+
+.controls{
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  gap:20px;
+}
+
+.control,
+.play-button{
+  cursor:pointer;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+}
+
+.control{
+  width:55px;
+  height:55px;
+  border:1px solid #333;
+  border-radius:50%;
+  background:#222;
+  color:white;
+  font-size:19px;
+}
+
+.play-button{
+  width:68px;
+  height:68px;
+  border:0;
+  border-radius:50%;
+  background:white;
+  color:#000;
+  font-size:23px;
+}
+
+.counter{
+  text-align:center;
+  margin-top:17px;
+  color:#666;
+  font-size:12px;
+}
+
+.error{
+  display:none;
+  text-align:center;
+  margin-top:15px;
+  color:#ff7777;
+  font-size:13px;
+}
+
+footer{
+  padding:35px 20px;
+  text-align:center;
+  border-top:1px solid #1d1d1d;
+  color:#777;
+}
+
+footer small{
+  display:block;
+  margin-top:8px;
+  color:#555;
+}
+
+@media(max-width:600px){
+  .topbar{
+    padding:0 20px;
+  }
+
+  .music{
+    width:94%;
+  }
+
+  .player{
+    padding:18px;
+  }
+
+  .song-title{
+    font-size:17px;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<header class="topbar">
+  <div class="brand">PDA 🚲</div>
+  <div class="mission">MISSION 2027</div>
+</header>
+
+
+<section class="hero">
+
+  <div class="hero-content">
+
+    <div class="label">PDA • MISSION 2027</div>
+
+    <h1>
+      समाजवादी पार्टी
+      <span>🚲 2027</span>
+    </h1>
+
+    <p class="subtitle">
+      अपनी playlist • अपना music • अपना page
+    </p>
+
+    <div class="cycle">🚲</div>
+
+    <div class="info-box">
+      <p id="workText">
+        1090 महिला शक्ति लाइन — महिलाओं की सुरक्षा से जुड़ी हेल्पलाइन
+      </p>
+    </div>
+
+  </div>
+
+</section>
+
+
+<section class="music">
+
+  <div class="music-heading">
+    <h2>🎵 Mission 2027 Music</h2>
+    <p>अपनी पसंद का गाना सुनें</p>
+  </div>
+
+  <div class="player">
+
+    <div class="cover">🎵</div>
+
+    <div class="song-title" id="songTitle">
+      Akhilesh Yadav - Kaam Bolta Hai
+    </div>
+
+    <div class="song-number" id="songNumber">
+      Song 1
+    </div>
+
+    <audio id="audioPlayer" controls preload="metadata"></audio>
+
+    <div class="controls">
+
+      <button class="control" id="prevBtn">⏮</button>
+
+      <button class="play-button" id="playBtn">▶</button>
+
+      <button class="control" id="nextBtn">⏭</button>
+
+    </div>
+
+    <div class="counter" id="counter">1 / 8</div>
+
+    <div class="error" id="error">
+      ⚠️ MP3 file load नहीं हो पाई।
+    </div>
+
+  </div>
+
+</section>
+
+
+<footer>
+  PDA • Mission 2027
+  <small>Created by Pranjul Yadav</small>
+</footer>
+
+
 <script>
 
+/* =========================
+   8 MP3 FILES
+   ये files repository की
+   MAIN जगह पर हैं।
+========================= */
+
 const songs = [
+
   {
     file: "Akhilesh%20Yadav's%20campaign%20video-%20Kaam%20Bolta%20Hai%20-%20Dimple%20Yadav%20(128k).mp3",
     name: "Akhilesh Yadav - Kaam Bolta Hai"
   },
+
   {
     file: "Cycle%20Chalegi%20Up%20Mai%20Gagan%20Fouji%20New%20Samajwadi%20Song%20Mission%202027%20%23akhileshyadavsong%20-%20BAJWA%20MUSIC%20(128k).mp3",
     name: "Cycle Chalegi UP Mein"
   },
+
   {
     file: "Mein%20Akhilesh%20Ka%20Fan%20Hu%20Song%20Kalu%20Yadav%20Sorkha%20Samajwadi%20Party%20Akhilesh%20Yadav%20Song%20Yadav%20Song%20-%20Risky%20Music%20(128k).mp3",
     name: "Mein Akhilesh Ka Fan Hu"
   },
+
   {
     file: "PDA%20Ke%20Mahanayak%20Kalu%20Yadav%20Sorkha%20Akhilesh%20Wazidpuria%20Samajwadi%20Party%20Song%202027%20-%20Kalu%20Yadav%20Sorkha%20(128k).mp3",
     name: "PDA Ke Mahanayak"
   },
+
   {
     file: "Samajwadi%20Party%20ThemeSong%20Akhilesh%20Yadav%20Mulayam%20Singh%20Yadav%20Samajwadi%20Party%20Support%20Samajwad%20-%20Support%20Samajwad%20(128k).mp3",
     name: "Samajwadi Party Theme Song"
   },
+
   {
     file: "Samajwadi%20Prahari%20-%20Janta%20Pukarti%20Hai%20Akhilesh%20Aaiye%20-%20SamajwadiPrahariVEVO%20(128k).mp3",
     name: "Samajwadi Prahari"
   },
+
   {
     file: "Up%20Me%20Cycle%20Hi%20Chalegi%20_Risky%20Yadav%20Akhilesh%20Yadav%20Song%202027%20Samajwadi%20Party%20Kalu%20Yadav%20Sorkha%20-%20Risky%20Music%20(128k).mp3",
     name: "UP Me Cycle Hi Chalegi"
   },
+
   {
     file: "VIDEO%20-%20%E0%A4%B8%E0%A4%AA%E0%A4%BE%20%E0%A4%86%E0%A4%88%20%E0%A4%B0%E0%A5%87%20-%20Samar%20Singh%20-%20Sapa%20Aai%20Re%20-%20Akhilesh%20Yadav%20-%20Samajwadi%20Party%20Song%202022%20-%20Samar%20Singh%20Official%20(128k).mp3",
     name: "Sapa Aai Re - Samar Singh"
   }
+
 ];
+
 
 let currentSong = 0;
 
@@ -41,133 +388,201 @@ const audio = document.getElementById("audioPlayer");
 const title = document.getElementById("songTitle");
 const number = document.getElementById("songNumber");
 const counter = document.getElementById("counter");
-const playButton = document.getElementById("playButton");
+const playBtn = document.getElementById("playBtn");
 const error = document.getElementById("error");
+const nextBtn = document.getElementById("nextBtn");
+const prevBtn = document.getElementById("prevBtn");
 
-function loadSong(index) {
+
+function loadSong(index){
 
   currentSong = index;
 
   title.textContent = songs[index].name;
+
   number.textContent = "Song " + (index + 1);
-  counter.textContent = (index + 1) + " / " + songs.length;
+
+  counter.textContent =
+    (index + 1) + " / " + songs.length;
 
   /*
-    तुम्हारी GitHub file में %20 literally filename का हिस्सा है।
-    इसलिए encodeURIComponent() उसे %2520 में बदलेगा।
+    IMPORTANT:
+    GitHub में filename में %20 है।
+    इसलिए % को दोबारा encode करना जरूरी है।
   */
-  audio.src = encodeURIComponent(songs[index].file);
+
+  audio.src = encodeURI(
+    songs[index].file
+  ).replaceAll("%20", "%2520");
 
   audio.load();
 
   error.style.display = "none";
-  playButton.textContent = "▶";
+
+  playBtn.textContent = "▶";
 }
 
-function togglePlay() {
 
-  if (audio.paused) {
+function playSong(){
 
-    audio.play()
-      .then(() => {
-        playButton.textContent = "❚❚";
-      })
-      .catch(() => {
-        error.style.display = "block";
-      });
+  audio.play()
+    .then(function(){
 
-  } else {
+      playBtn.textContent = "❚❚";
+
+    })
+    .catch(function(){
+
+      error.style.display = "block";
+
+    });
+}
+
+
+function togglePlay(){
+
+  if(audio.paused){
+
+    playSong();
+
+  }else{
 
     audio.pause();
-    playButton.textContent = "▶";
+
+    playBtn.textContent = "▶";
 
   }
+
 }
 
-function nextSong() {
+
+function nextSong(){
 
   currentSong++;
 
-  if (currentSong >= songs.length) {
+  if(currentSong >= songs.length){
+
     currentSong = 0;
+
   }
 
   loadSong(currentSong);
 
-  audio.play()
-    .then(() => {
-      playButton.textContent = "❚❚";
-    })
-    .catch(() => {
-      error.style.display = "block";
-    });
+  playSong();
+
 }
 
-function previousSong() {
+
+function previousSong(){
 
   currentSong--;
 
-  if (currentSong < 0) {
+  if(currentSong < 0){
+
     currentSong = songs.length - 1;
+
   }
 
   loadSong(currentSong);
 
-  audio.play()
-    .then(() => {
-      playButton.textContent = "❚❚";
-    })
-    .catch(() => {
-      error.style.display = "block";
-    });
+  playSong();
+
 }
 
-audio.addEventListener("ended", nextSong);
 
-audio.addEventListener("error", function() {
-  error.style.display = "block";
-});
+playBtn.addEventListener(
+  "click",
+  togglePlay
+);
 
-audio.addEventListener("play", function() {
-  playButton.textContent = "❚❚";
-});
+nextBtn.addEventListener(
+  "click",
+  nextSong
+);
 
-audio.addEventListener("pause", function() {
-  playButton.textContent = "▶";
-});
+prevBtn.addEventListener(
+  "click",
+  previousSong
+);
+
+
+audio.addEventListener(
+  "ended",
+  nextSong
+);
+
+
+audio.addEventListener(
+  "play",
+  function(){
+    playBtn.textContent = "❚❚";
+  }
+);
+
+
+audio.addEventListener(
+  "pause",
+  function(){
+    playBtn.textContent = "▶";
+  }
+);
+
+
+audio.addEventListener(
+  "error",
+  function(){
+    error.style.display = "block";
+  }
+);
+
+
+/* FIRST SONG */
 
 loadSong(0);
 
 
-/* ऊपर वाला information text */
+/* INFORMATION TEXT */
 
 const works = [
+
   "1090 महिला शक्ति लाइन — महिलाओं की सुरक्षा से जुड़ी हेल्पलाइन",
+
   "लखनऊ मेट्रो — शहरी परिवहन परियोजना",
+
   "आगरा-लखनऊ एक्सप्रेसवे — 302 किलोमीटर का एक्सप्रेसवे",
+
   "किसान बाज़ार — किसानों से जुड़ी बाजार व्यवस्था",
+
   "लोहिया आवास योजना — ग्रामीण आवास से जुड़ी योजना",
+
   "108 आपातकालीन एम्बुलेंस सेवा — स्वास्थ्य सेवा"
+
 ];
 
 let currentWork = 0;
 
-setInterval(function() {
+setInterval(function(){
 
-  const text = document.getElementById("workText");
+  const text =
+    document.getElementById("workText");
 
   text.style.opacity = "0";
 
-  setTimeout(function() {
+  setTimeout(function(){
 
-    currentWork = (currentWork + 1) % works.length;
+    currentWork =
+      (currentWork + 1) % works.length;
 
-    text.textContent = works[currentWork];
+    text.textContent =
+      works[currentWork];
 
     text.style.opacity = "1";
 
-  }, 400);
+  },400);
 
-}, 3500);
+},3500);
 
 </script>
+
+</body>
+</html>
