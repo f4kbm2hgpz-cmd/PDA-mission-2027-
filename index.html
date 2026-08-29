@@ -1,535 +1,268 @@
 <!DOCTYPE html>
 <html lang="hi">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>PDA Mission 2027</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<style>
-*{
-  box-sizing:border-box;
-  margin:0;
-  padding:0;
-}
+  <title>#Kaamboltahai | PDA 🚲 | MISSION 2027</title>
 
-body{
-  min-height:100vh;
-  font-family:Arial,sans-serif;
-  color:white;
-  background:#070707;
-}
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
 
-.topbar{
-  height:70px;
-  padding:0 6%;
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
-  background:#0b0b0b;
-  border-bottom:1px solid #252525;
-}
+    body {
+      min-height: 100vh;
+      font-family: Arial, sans-serif;
+      color: white;
+      background:
+        radial-gradient(circle at top left, rgba(255, 0, 0, 0.35), transparent 35%),
+        radial-gradient(circle at bottom right, rgba(0, 255, 100, 0.30), transparent 35%),
+        linear-gradient(135deg, #050505, #101010, #050505);
+      padding-bottom: 40px;
+    }
 
-.brand{
-  font-size:23px;
-  font-weight:900;
-}
+    .topbar {
+      width: 100%;
+      padding: 18px 25px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 1px solid rgba(255,255,255,0.12);
+      background: rgba(0,0,0,0.45);
+      backdrop-filter: blur(10px);
+    }
 
-.mission{
-  font-size:12px;
-  letter-spacing:2px;
-  color:#aaa;
-}
+    .logo {
+      font-size: 24px;
+      font-weight: 800;
+    }
 
-.hero{
-  min-height:420px;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  text-align:center;
-  padding:60px 20px;
+    .mission {
+      font-size: 14px;
+      font-weight: bold;
+      letter-spacing: 2px;
+      color: #ddd;
+    }
 
-  background:
-    radial-gradient(circle at 10% 20%,rgba(255,0,0,.25),transparent 35%),
-    radial-gradient(circle at 90% 80%,rgba(0,255,100,.16),transparent 35%),
-    #070707;
-}
+    .hero {
+      text-align: center;
+      padding: 55px 20px 30px;
+    }
 
-.hero-content{
-  width:100%;
-  max-width:850px;
-}
+    .cycle {
+      font-size: 58px;
+      margin-bottom: 10px;
+    }
 
-.label{
-  display:inline-block;
-  padding:9px 18px;
-  border:1px solid #303030;
-  border-radius:50px;
-  background:#151515;
-  color:#aaa;
-  font-size:12px;
-  letter-spacing:2px;
-  margin-bottom:25px;
-}
+    h1 {
+      font-size: clamp(38px, 8vw, 75px);
+      font-weight: 900;
+      letter-spacing: 2px;
+      text-shadow:
+        0 0 10px rgba(255,0,0,0.8),
+        0 0 25px rgba(0,255,100,0.5);
+    }
 
-h1{
-  font-size:clamp(42px,8vw,80px);
-  line-height:1.05;
-  font-weight:900;
-}
+    .hashtag {
+      margin-top: 15px;
+      font-size: clamp(22px, 5vw, 38px);
+      font-weight: 800;
+      color: white;
+    }
 
-h1 span{
-  display:block;
-  margin-top:10px;
-}
+    .player-card {
+      width: min(92%, 650px);
+      margin: 25px auto;
+      padding: 25px;
+      border-radius: 24px;
+      background: rgba(20,20,20,0.75);
+      border: 1px solid rgba(255,255,255,0.14);
+      box-shadow:
+        0 0 30px rgba(255,0,0,0.12),
+        0 0 30px rgba(0,255,100,0.10);
+      backdrop-filter: blur(15px);
+    }
 
-.subtitle{
-  margin-top:20px;
-  color:#999;
-  font-size:17px;
-}
+    .player-title {
+      text-align: center;
+      font-size: 22px;
+      font-weight: bold;
+      margin-bottom: 20px;
+    }
 
-.cycle{
-  font-size:58px;
-  margin:25px 0;
-}
+    .song-list {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
 
-.info-box{
-  display:inline-block;
-  max-width:650px;
-  padding:15px 20px;
-  border:1px solid #292929;
-  border-radius:15px;
-  background:#111;
-  color:#ddd;
-}
+    .song {
+      width: 100%;
+      padding: 14px 16px;
+      border-radius: 14px;
+      background: rgba(255,255,255,0.07);
+      border: 1px solid rgba(255,255,255,0.08);
+      color: white;
+      cursor: pointer;
+      transition: 0.2s;
+      text-align: left;
+      font-size: 15px;
+    }
 
-.music{
-  width:min(650px,92%);
-  margin:45px auto 90px;
-}
+    .song:hover {
+      background: rgba(255,255,255,0.13);
+      transform: translateY(-1px);
+    }
 
-.music-heading{
-  text-align:center;
-  margin-bottom:25px;
-}
+    .song.active {
+      border-color: rgba(0,255,100,0.6);
+      background: rgba(0,255,100,0.10);
+    }
 
-.music-heading h2{
-  font-size:30px;
-}
+    audio {
+      width: 100%;
+      margin-top: 20px;
+    }
 
-.music-heading p{
-  color:#777;
-  margin-top:8px;
-}
+    .now-playing {
+      text-align: center;
+      margin-top: 15px;
+      color: #ccc;
+      font-size: 14px;
+    }
 
-.player{
-  padding:22px;
-  border:1px solid #292929;
-  border-radius:25px;
-  background:linear-gradient(145deg,#1a1a1a,#090909);
-  box-shadow:0 25px 70px rgba(0,0,0,.55);
-}
+    .footer {
+      text-align: center;
+      margin-top: 35px;
+      color: #aaa;
+      font-size: 13px;
+    }
 
-.cover{
-  height:110px;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  border-radius:20px;
-  border:1px solid #333;
-  background:linear-gradient(135deg,#292929,#090909);
-  font-size:48px;
-  margin-bottom:20px;
-}
+    @media (max-width: 600px) {
+      .topbar {
+        padding: 15px;
+      }
 
-.song-title{
-  text-align:center;
-  font-size:19px;
-  font-weight:bold;
-  line-height:1.4;
-}
+      .logo {
+        font-size: 20px;
+      }
 
-.song-number{
-  text-align:center;
-  margin-top:7px;
-  color:#777;
-  font-size:13px;
-}
+      .mission {
+        font-size: 11px;
+      }
 
-audio{
-  display:block;
-  width:100%;
-  margin:20px 0;
-}
+      .hero {
+        padding-top: 40px;
+      }
 
-.controls{
-  display:flex;
-  justify-content:center;
-  align-items:center;
-  gap:20px;
-}
+      .cycle {
+        font-size: 48px;
+      }
 
-.control,
-.play-button{
-  cursor:pointer;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-}
-
-.control{
-  width:55px;
-  height:55px;
-  border:1px solid #333;
-  border-radius:50%;
-  background:#222;
-  color:white;
-  font-size:19px;
-}
-
-.play-button{
-  width:68px;
-  height:68px;
-  border:0;
-  border-radius:50%;
-  background:white;
-  color:#000;
-  font-size:23px;
-}
-
-.counter{
-  text-align:center;
-  margin-top:17px;
-  color:#666;
-  font-size:12px;
-}
-
-.error{
-  display:none;
-  text-align:center;
-  margin-top:15px;
-  color:#ff7777;
-  font-size:13px;
-}
-
-footer{
-  padding:35px 20px;
-  text-align:center;
-  border-top:1px solid #1d1d1d;
-  color:#777;
-}
-
-footer small{
-  display:block;
-  margin-top:8px;
-  color:#555;
-}
-
-@media(max-width:600px){
-  .topbar{
-    padding:0 20px;
-  }
-
-  .music{
-    width:94%;
-  }
-
-  .player{
-    padding:18px;
-  }
-
-  .song-title{
-    font-size:17px;
-  }
-}
-</style>
+      .player-card {
+        padding: 18px;
+      }
+    }
+  </style>
 </head>
 
 <body>
 
-<header class="topbar">
-  <div class="brand">PDA 🚲</div>
-  <div class="mission">MISSION 2027</div>
-</header>
+  <div class="topbar">
+    <div class="logo">PDA 🚲</div>
+    <div class="mission">MISSION 2027</div>
+  </div>
 
-<section class="hero">
-
-  <div class="hero-content">
-
-    <div class="label">PDA • MISSION 2027</div>
-
-    <h1>
-      समाजवादी पार्टी
-      <span>🚲 2027</span>
-    </h1>
-
-    <p class="subtitle">
-      अपनी playlist • अपना music • अपना page
-    </p>
+  <section class="hero">
 
     <div class="cycle">🚲</div>
 
-    <div class="info-box">
-      <p id="workText">
-        1090 महिला शक्ति लाइन — महिलाओं की सुरक्षा से जुड़ी हेल्पलाइन
-      </p>
+    <h1>#Kaamboltahai</h1>
+
+    <div class="hashtag">#Kaamboltahai</div>
+
+  </section>
+
+  <div class="player-card">
+
+    <div class="player-title">
+      🎵 MUSIC
     </div>
 
-  </div>
-
-</section>
-
-<section class="music">
-
-  <div class="music-heading">
-    <h2>🎵 Mission 2027 Music</h2>
-    <p>अपनी पसंद का गाना सुनें</p>
-  </div>
-
-  <div class="player">
-
-    <div class="cover">🎵</div>
-
-    <div class="song-title" id="songTitle">
-      Akhilesh Yadav - Kaam Bolta Hai
-    </div>
-
-    <div class="song-number" id="songNumber">
-      Song 1
-    </div>
+    <div class="song-list" id="songList"></div>
 
     <audio id="audioPlayer" controls preload="metadata"></audio>
 
-    <div class="controls">
-
-      <button class="control" id="prevBtn">⏮</button>
-
-      <button class="play-button" id="playBtn">▶</button>
-
-      <button class="control" id="nextBtn">⏭</button>
-
-    </div>
-
-    <div class="counter" id="counter">1 / 8</div>
-
-    <div class="error" id="error">
-      ⚠️ MP3 file load नहीं हो पाई।
+    <div class="now-playing" id="nowPlaying">
+      कोई गाना चुनें
     </div>
 
   </div>
 
-</section>
+  <div class="footer">
+    © 2026 #Kaamboltahai
+  </div>
 
-<footer>
-  PDA • Mission 2027
-  <small>Created by Pranjul Yadav</small>
-</footer>
 
-<script>
+  <script>
+    /*
+      IMPORTANT:
+      Neeche apne MP3 folder ke exact file names daalna.
+      
+      Example:
+      "mp3/song1.mp3"
+      "mp3/song2.mp3"
+    */
 
-const songs = [
+    const songs = [
+      "mp3/song1.mp3",
+      "mp3/song2.mp3",
+      "mp3/song3.mp3",
+      "mp3/song4.mp3",
+      "mp3/song5.mp3",
+      "mp3/song6.mp3",
+      "mp3/song7.mp3",
+      "mp3/song8.mp3"
+    ];
 
-  {
-    file: "Akhilesh%20Yadav's%20campaign%20video-%20Kaam%20Bolta%20Hai%20-%20Dimple%20Yadav%20(128k).mp3",
-    name: "Akhilesh Yadav - Kaam Bolta Hai"
-  },
+    const songList = document.getElementById("songList");
+    const audioPlayer = document.getElementById("audioPlayer");
+    const nowPlaying = document.getElementById("nowPlaying");
 
-  {
-    file: "Cycle%20Chalegi%20Up%20Mai%20Gagan%20Fouji%20New%20Samajwadi%20Song%20Mission%202027%20%23akhileshyadavsong%20-%20BAJWA%20MUSIC%20(128k).mp3",
-    name: "Cycle Chalegi UP Mein"
-  },
+    songs.forEach((file, index) => {
 
-  {
-    file: "Mein%20Akhilesh%20Ka%20Fan%20Hu%20Song%20Kalu%20Yadav%20Sorkha%20Samajwadi%20Party%20Akhilesh%20Yadav%20Song%20Yadav%20Song%20-%20Risky%20Music%20(128k).mp3",
-    name: "Mein Akhilesh Ka Fan Hu"
-  },
+      const button = document.createElement("button");
 
-  {
-    file: "PDA%20Ke%20Mahanayak%20Kalu%20Yadav%20Sorkha%20Akhilesh%20Wazidpuria%20Samajwadi%20Party%20Song%202027%20-%20Kalu%20Yadav%20Sorkha%20(128k).mp3",
-    name: "PDA Ke Mahanayak"
-  },
+      button.className = "song";
 
-  {
-    file: "Samajwadi%20Party%20ThemeSong%20Akhilesh%20Yadav%20Mulayam%20Singh%20Yadav%20Samajwadi%20Party%20Support%20Samajwad%20-%20Support%20Samajwad%20(128k).mp3",
-    name: "Samajwadi Party Theme Song"
-  },
+      button.textContent = "🎵 " + file
+        .replace("mp3/", "")
+        .replace(".mp3", "");
 
-  {
-    file: "Samajwadi%20Prahari%20-%20Janta%20Pukarti%20Hai%20Akhilesh%20Aaiye%20-%20SamajwadiPrahariVEVO%20(128k).mp3",
-    name: "Samajwadi Prahari"
-  },
+      button.addEventListener("click", () => {
 
-  {
-    file: "Up%20Me%20Cycle%20Hi%20Chalegi%20_Risky%20Yadav%20Akhilesh%20Yadav%20Song%202027%20Samajwadi%20Party%20Kalu%20Yadav%20Sorkha%20-%20Risky%20Music%20(128k).mp3",
-    name: "UP Me Cycle Hi Chalegi"
-  },
+        document.querySelectorAll(".song")
+          .forEach(btn => btn.classList.remove("active"));
 
-  {
-    file: "VIDEO%20-%20%E0%A4%B8%E0%A4%AA%E0%A4%BE%20%E0%A4%86%E0%A4%88%20%E0%A4%B0%E0%A5%87%20-%20Samar%20Singh%20-%20Sapa%20Aai%20Re%20-%20Akhilesh%20Yadav%20-%20Samajwadi%20Party%20Song%202022%20-%20Samar%20Singh%20Official%20(128k).mp3",
-    name: "Sapa Aai Re - Samar Singh"
-  }
+        button.classList.add("active");
 
-];
+        audioPlayer.src = file;
+        audioPlayer.load();
+        audioPlayer.play();
 
-const RAW_BASE =
-"https://raw.githubusercontent.com/f4kbm2hgpz-cmd/PDA-mission-2027-/refs/heads/main/";
+        nowPlaying.textContent =
+          "▶️ " + file
+            .replace("mp3/", "")
+            .replace(".mp3", "");
 
-let currentSong = 0;
+      });
 
-const audio = document.getElementById("audioPlayer");
-const title = document.getElementById("songTitle");
-const number = document.getElementById("songNumber");
-const counter = document.getElementById("counter");
-const playBtn = document.getElementById("playBtn");
-const error = document.getElementById("error");
-
-function loadSong(index){
-
-  currentSong = index;
-
-  title.textContent = songs[index].name;
-
-  number.textContent =
-    "Song " + (index + 1);
-
-  counter.textContent =
-    (index + 1) + " / " + songs.length;
-
-  /*
-   * IMPORTANT:
-   * GitHub filename में %20 पहले से मौजूद है।
-   * encodeURIComponent() % को %25 में बदलता है,
-   * जिससे Raw URL सही file तक पहुँचता है।
-   */
-
-  audio.src =
-    RAW_BASE + encodeURIComponent(songs[index].file);
-
-  audio.load();
-
-  error.style.display = "none";
-
-  playBtn.textContent = "▶";
-}
-
-function playSong(){
-
-  audio.play()
-    .then(function(){
-
-      playBtn.textContent = "❚❚";
-
-    })
-    .catch(function(){
-
-      error.style.display = "block";
-
+      songList.appendChild(button);
     });
-}
-
-function togglePlay(){
-
-  if(audio.paused){
-
-    playSong();
-
-  }else{
-
-    audio.pause();
-
-    playBtn.textContent = "▶";
-
-  }
-}
-
-function nextSong(){
-
-  currentSong++;
-
-  if(currentSong >= songs.length){
-    currentSong = 0;
-  }
-
-  loadSong(currentSong);
-  playSong();
-}
-
-function previousSong(){
-
-  currentSong--;
-
-  if(currentSong < 0){
-    currentSong = songs.length - 1;
-  }
-
-  loadSong(currentSong);
-  playSong();
-}
-
-document
-.getElementById("playBtn")
-.addEventListener("click", togglePlay);
-
-document
-.getElementById("nextBtn")
-.addEventListener("click", nextSong);
-
-document
-.getElementById("prevBtn")
-.addEventListener("click", previousSong);
-
-audio.addEventListener("ended", nextSong);
-
-audio.addEventListener("play", function(){
-  playBtn.textContent = "❚❚";
-});
-
-audio.addEventListener("pause", function(){
-  playBtn.textContent = "▶";
-});
-
-audio.addEventListener("error", function(){
-  error.style.display = "block";
-});
-
-loadSong(0);
-
-
-/* Information text */
-
-const works = [
-  "1090 महिला शक्ति लाइन — महिलाओं की सुरक्षा से जुड़ी हेल्पलाइन",
-  "लखनऊ मेट्रो — शहरी परिवहन परियोजना",
-  "आगरा-लखनऊ एक्सप्रेसवे — 302 किलोमीटर का एक्सप्रेसवे",
-  "किसान बाज़ार — किसानों से जुड़ी बाजार व्यवस्था",
-  "लोहिया आवास योजना — ग्रामीण आवास से जुड़ी योजना",
-  "108 आपातकालीन एम्बुलेंस सेवा — स्वास्थ्य सेवा"
-];
-
-let currentWork = 0;
-
-setInterval(function(){
-
-  const text =
-    document.getElementById("workText");
-
-  text.style.opacity = "0";
-
-  setTimeout(function(){
-
-    currentWork =
-      (currentWork + 1) % works.length;
-
-    text.textContent =
-      works[currentWork];
-
-    text.style.opacity = "1";
-
-  },400);
-
-},3500);
-
-</script>
+  </script>
 
 </body>
 </html>
